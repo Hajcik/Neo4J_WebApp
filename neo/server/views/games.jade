@@ -1,0 +1,62 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    h1 New Game Form
+    div
+        form(action='/games/newgame', method='post')
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='title') GAME TITLE 
+                        input(id='title', type='text',value='', placeholder='Game title...',name='title', required='required')
+                
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='developer') GAME GENRE 
+                        input(id='genre', type='text',value='', placeholder='Game genre...', name='genre', required='required') 
+
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='developer') GAME DEVELOPER 
+                        input(id='developer', type='text',value='', placeholder='Game developer...', name='developer', required='required')
+
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='publisher') GAME PUBLISHER 
+                        input(id='publisher', type='text',value='', placeholder='Game publisher...', name='publisher', required='required')
+
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='publisher') GAME PRICE 
+                        input(id='price', type='number', step='0.01', min=0, value='', placeholder='Game price...', name='price', required='required')
+
+            div(data-role='fieldcontain')   
+                input(type='submit',value='Insert New Game',data-transition='fade', data-theme='c')
+
+    br
+    h2 Games list
+    div 
+        table(style="width:100%")
+            thead 
+                tr: th DEL
+                    th Game Title
+                    th Genre
+                    th Price
+                    th Director
+                    th Developer
+                    th Publisher
+            tbody
+                each game in games
+                    tr
+                        td
+                            form(action='/games/delete' method='get')
+                                input(type='hidden', value='#{game.id}', name='delete_id')
+                                input(type='submit', value='X', data-transition='fade', data-theme='c')
+                        td  #{game.title}
+                        td  #{game.genre}
+                        td  #{game.price} $
+                        td  #{game.director}
+                        td  #{game.developer}
+                        td  #{game.publisher}
+        

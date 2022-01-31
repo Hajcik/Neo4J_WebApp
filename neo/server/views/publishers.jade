@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    h1 New Publisher Form 
+    div
+    form(action='publishers/newpub', method='post')
+        div(data-role='fieldcontain')
+            fieldset(data-role='controlgroup')
+                label(for='name') PUBLISHER NAME 
+                    input(id='name', type='text', value='', placeholder='Publisher name...', required='required', name='name')
+
+        div(data-role='fieldcontain')   
+                input(type='submit',value='Insert New Publisher',data-transition='fade', data-theme='c')
+
+    br
+    h2 Publishers list
+    div 
+        table
+            thead
+                tr: th DEL
+                    th Publisher Name
+            tbody
+                each pub in pubs
+                    tr
+                        td
+                            form(action='/publishers/delete' method='get')
+                                input(type='hidden', value='#{pub.id}', name='delete_id')
+                                input(type='submit', value='X', data-transition='fade', data-theme='c')
+                        td #{pub.name}

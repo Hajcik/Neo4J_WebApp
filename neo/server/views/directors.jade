@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    h1 New Director Form
+    div
+        form(action='/directors/newdir', method='post')
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='name') DIRECTOR NAME 
+                        input(id='name',type='text',value='', placeholder='Director name...',name='name', required='required')
+            div(data-role='fieldcontain')   
+                input(type='submit',value='Insert New Director',data-transition='fade', data-theme='c')
+
+    br
+    h2 Directors list
+    div 
+        table(id=dirTable)
+            thead
+                tr: th DEL
+                    th Director Name
+                tbody 
+                    each dir in dirs
+                        tr
+                            td
+                                form(action='/directors/delete' method='get')
+                                    input(type='hidden', value='#{dir.id}', name='delete_id')
+                                    input(type='submit', value='X', data-transition='fade', data-theme='c')
+                            td #{dir.name}

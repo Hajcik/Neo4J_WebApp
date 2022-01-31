@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    h1 New Developer Form
+    div 
+        form(action='/developers/newdev', method='post')
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='name') DEVELOPER NAME 
+                        input(id='name', type='text',value='', placeholder='Dev name...',name='name', required='required')
+                
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='country') DEVELOPER COUNTRY 
+                        input(id='country', type='text',value='', placeholder='Dev country...', name='country', required='required') 
+
+            div(data-role='fieldcontain')
+                fieldset(data-role='controlgroup')
+                    label(for='established') ESTABLISHED 
+                        input(id='established', type='number', step='1', min=1950, max=2030, value='', placeholder='Established in...', name='established', required='required')
+
+            div(data-role='fieldcontain')   
+                input(type='submit',value='Insert New Developer',data-transition='fade', data-theme='c')
+
+    br
+    h2 Developers list
+    div 
+        table
+            thead 
+                tr: th DEL
+                    th Developer Name
+                    th Country
+                    th Established
+            tbody
+                each dev in devs
+                    tr
+                    td
+                        form(action='/developers/delete' method='get')
+                            input(type='hidden', value='#{dev.id}', name='delete_id')
+                            input(type='submit', value='X', data-transition='fade', data-theme='c')
+                        td  #{dev.name}
+                        td  #{dev.country}
+                        td  Year #{dev.established}

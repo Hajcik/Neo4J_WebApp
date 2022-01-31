@@ -1,0 +1,5 @@
+{
+    "dbHost": "neo4j+s://49f1e8af.databases.neo4j.io:7687",
+    "dbUser": "neo4j",
+    "dbPass": "hajcik"
+}

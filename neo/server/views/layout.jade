@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div.container
+            ul.col-md-12.row
+                a(href="/games")
+                    li.col-md-3.col-md-offset-1 Games
+                a(href="/mods")
+                    li.col-md-3 Mods
+                a(href="/developers")
+                    li.col-md-3 Developers
+                a(href="/publishers")
+                    li.col-md-3 Publishers
+                a(href="/directors")
+                    li.col-md-3 Directors
+    block content
